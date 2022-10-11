@@ -26,3 +26,6 @@ jobs:
         run: echo "$ENV_CONTEXT"
         env:
           ENV_CONTEXT: ${{ toJson(env) }}
+      
+      - name: echo Secrets
+        run: echo ${{ secrets }}
