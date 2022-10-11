@@ -1,0 +1,28 @@
+name: Test-Composite
+
+on:
+  workflow_dispatch:
+    inputs:
+      env_file:
+        type: string
+        description: "path to .env file"
+        required: false 
+        default: ./.github/variables/myvars.env
+
+jobs:
+  echo-secrets: 
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'Checkout GitHub Action'
+        uses: actions/checkout@main
+
+      - name: Set Environment Variables
+        uses: ./.github/actions/setvars
+        with:
+          varFilePath: ${{ inputs.env_file }} 
+      
+      - name: echo Environment Variables 
+        run: echo "$ENV_CONTEXT"
+        env:
+          ENV_CONTEXT: ${{ toJson(env) }}
