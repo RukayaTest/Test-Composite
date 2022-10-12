@@ -1,4 +1,4 @@
-name: Test-Composite
+name: Reusable Test-Composite
 
 on:
   workflow_call:
