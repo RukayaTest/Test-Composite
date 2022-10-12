@@ -10,17 +10,16 @@ on:
         default: ./.github/variables/myvars.env
 
 jobs:
+  
+  env-variables:
+    uses: RukayaTest/Test-Composite/.github/workflows/env-variable.yml@main
+    
   echo-secrets: 
     runs-on: ubuntu-latest
 
     steps:
       - name: 'Checkout GitHub Action'
         uses: actions/checkout@main
-      
-      - name: Set Environment Variables
-        uses: RukayaTest/Test-Composite/.github/workflows/env-variable.yml@main
-        with:
-          var_file_path: ${{ inputs.env_file }} 
       
       - name: echo Environment Variables 
         run: echo "$ENV_CONTEXT"
