@@ -18,9 +18,9 @@ jobs:
         uses: actions/checkout@main
 
       - name: Set Environment Variables
-        uses: RukayaTest/Test-Composite/.github/workflows/myreusableorkflow.yml@main
+        uses: ./.github/actions/setvars
         with:
-          var_file_path: ${{ inputs.env_file }} 
+          varFilePath: ${{ inputs.env_file }}
       
       - name: echo Environment Variables 
         run: echo "$ENV_CONTEXT"
