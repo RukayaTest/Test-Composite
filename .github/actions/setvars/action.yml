@@ -8,6 +8,10 @@ inputs:
 runs:
   using: "composite"
   steps:
+    
+    - name: 'Checkout GitHub Action'
+      uses: actions/checkout@main
+        
     - run: |
         sed "" ${{ inputs.varFilePath }} >> $GITHUB_ENV
       shell: bash
