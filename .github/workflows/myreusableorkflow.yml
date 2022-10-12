@@ -13,6 +13,8 @@ jobs:
   
   env-variables:
     uses: RukayaTest/Test-Composite/.github/workflows/env-variable.yml@main
+    with:
+      var_file_path: ${{ inputs.env_file }}
     
   echo-secrets: 
     runs-on: ubuntu-latest
