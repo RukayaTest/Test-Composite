@@ -12,7 +12,7 @@ on:
     outputs:
       env_vars:
         description: "The outputs the environment variables"
-        value: ${{ jobs.example_job.outputs.env_vars }}
+        value: ${{ jobs.set-env-variables.outputs.env_vars }}
 
 jobs:
   set-env-variables: 
