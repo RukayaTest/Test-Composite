@@ -8,12 +8,19 @@ on:
       var_file_path:
         type: string
         description: "path to .env file"
-        required: false 
+        required: false
+    outputs:
+      env_vars:
+        description: "The outputs the environment variables"
+        value: ${{ jobs.example_job.outputs.env_vars }}
 
 jobs:
   set-env-variables: 
     runs-on: ubuntu-latest
-
+    
+    outputs:
+      env_vars: ${{ steps.read_env_variables.outputs.env_vars }}
+      
     steps:
       - name: 'Checkout GitHub Action'
         uses: actions/checkout@main
@@ -21,10 +28,17 @@ jobs:
       - name: 'Read env variables to Github env'
         run: |
           sed "" ${{ inputs.var_file_path }} >> $GITHUB_ENV
-      
-      - name: echo Environment Variables 
-        run: echo "$ENV_CONTEXT"
+          
+      - name: 'Outut Environment Variables'
+        id: read_env_variables
+        run: echo "::set-output name=env_vars::$ENV_CONTEXT"
         env:
           ENV_CONTEXT: ${{ toJson(env) }}
+          
+      - name: 'Echo Environment Variables' 
+        run: echo $ENV_CONTEXT
+        env:
+          ENV_CONTEXT: ${{ toJson(env) }}
+      
 
     
