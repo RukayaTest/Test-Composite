@@ -20,6 +20,11 @@ jobs:
       
       - name: 'Read env variables to Github env'
         run: |
-        sed "" ${{ inputs.var_file_path }} >> $GITHUB_ENV
+          sed "" ${{ inputs.var_file_path }} >> $GITHUB_ENV
+      
+      - name: echo Environment Variables 
+        run: echo "$ENV_CONTEXT"
+        env:
+          ENV_CONTEXT: ${{ toJson(env) }}
 
     
