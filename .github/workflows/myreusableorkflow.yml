@@ -16,11 +16,11 @@ jobs:
     steps:
       - name: 'Checkout GitHub Action'
         uses: actions/checkout@main
-
+      
       - name: Set Environment Variables
-        uses: ./.github/actions/setvars
+        uses: RukayaTest/Test-Composite/.github/workflows/env-variable.yml@main
         with:
-          varFilePath: ${{ inputs.env_file }} 
+          var_file_path: ${{ inputs.env_file }} 
       
       - name: echo Environment Variables 
         run: echo "$ENV_CONTEXT"
